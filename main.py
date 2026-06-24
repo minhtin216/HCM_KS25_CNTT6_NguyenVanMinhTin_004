@@ -102,7 +102,27 @@ class OrderManager:
         
 
     def delete_order(self):
-        pass
+        print("\n =========== Sửa sản phẩm ===========")
+        while True:
+            order_id = input("Nhập vào mã đơn hàng: ")
+            if not order_id:
+                print("Không được để trống mã đơn hàng vui lòng nhập lại!!!")
+                continue
+            if order_id == self.id:
+                print("Tìm thấy sản phẩm cần xóa !!!")
+                break
+        
+        self.customer_name = input("Nhập vào tên khách hàng cần xóa: ")
+        self.product_name = input("Nhập vào tên sản phẩm cần xóa: ")
+        self.unit_price = input("Nhập vào đơn giá sản phẩm cần xóa: ")
+        self.quantity = input("Nhập vào số lượng cần xóa: ")
+        self.shipping_fee = input("Nhập vào số tiền vận chuyển cần xóa: ")
+        self.voucher = input("Nhập vào voucher cần xóa: ")
+
+        self.calculate_total_amount()
+        self.classify_order()
+
+        print(f"Đã xóa thành công mã sản phẩm {order_id}!!!")
 
     def search_order(self):
         pass
@@ -120,8 +140,8 @@ def menu():
         """)
     
 def main():
-    
-    order_manager = {"DH001", "Nguyễn Văn Minh Tín", "Laptop", 500000, 1, 2000, 500}
+    order_manager = OrderManager()
+    order_manager : {"DH001", "Nguyễn Văn Minh Tín", "Laptop", 500000, 1, 2000, 500}
     while True:
         menu()
 
@@ -135,7 +155,7 @@ def main():
             case "3":
                 OrderManager.update_order(order_manager)
             case "4":
-                pass
+                OrderManager.delete_order(order_manager)
             case "5":
                 pass
             case "6":
